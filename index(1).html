@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques des Équipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .tabs {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            background-color: #333;
+            color: white;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .subtabs {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            background-color: #555;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .subtab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #333;
+            background-color: white;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="tabs">
+    <div class="tab" onclick="openTab('general')">Général</div>
+    <div class="tab" onclick="openTab('defense')">Défense</div>
+    <div class="tab" onclick="openTab('attaque')">Attaque</div>
+</div>
+
+<div id="general" class="content">
+    <div class="subtabs">
+        <div class="subtab" onclick="openSubTab('general_home')">Domicile</div>
+        <div class="subtab" onclick="openSubTab('general_away')">Exterieur</div>
+        <div class="subtab" onclick="openSubTab('general_other')">Autre</div>
+    </div>
+    <div id="general_home" style="display: none;">
+        <h2>Statistiques Générales - Domicile</h2>
+        <table id="general_home_table">
+            <tr>
+                <th>Équipe</th>
+                <th>Compétition</th>
+                <th>Buts</th>
+                <th>Tirs</th>
+            </tr>
+            <tr>
+                <td>Équipe 1</td>
+                <td>Compétition 1</td>
+                <td>10</td>
+                <td>30</td>
+            </tr>
+        </table>
+    </div>
+    <div id="general_away" style="display: none;">
+        <h2>Statistiques Générales - Exterieur</h2>
+        <table id="general_away_table">
+            <tr>
+                <th>Équipe</th>
+                <th>Compétition</th>
+                <th>Buts</th>
+                <th>Tirs</th>
+            </tr>
+            <tr>
+                <td>Équipe 1</td>
+                <td>Compétition 1</td>
+                <td>8</td>
+                <td>25</td>
+            </tr>
+            <!-- Ajoutez ici les lignes avec les données correspondantes pour l'extérieur -->
+        </table>
+    </div>
+    <div id="general_other" style="display: none;">
+        <h2>Statistiques Générales - Autre</h2>
+        <table id="general_other_table">
+            <tr>
+                <th>Équipe</th>
+                <th>Compétition</th>
+                <th>Buts</th>
+                <th>Tirs</th>
+            </tr>
+            <tr>
+                <td>Équipe 2</td>
+                <td>Compétition 2</td>
+                <td>15</td>
+                <td>40</td>
+            </tr>
+            <!-- Ajoutez ici les lignes avec les données correspondantes pour autre -->
+        </table>
+    </div>
+</div>
+
+<div id="defense" class="content">
+    <div class="subtabs">
+        <div class="subtab" onclick="openSubTab('defense_home')">Domicile</div>
+        <div class="subtab" onclick="openSubTab('defense_away')">Exterieur</div>
+        <div class="subtab" onclick="openSubTab('defense_other')">Autre</div>
+    </div>
+    <div id="defense_home" style="display: none;">
+        <h2>Statistiques de Défense - Domicile</h2>
+        <table id="defense_home_table">
+            <tr>
+                <th>Équipe</th>
+                <th>Compétition</th>
+                <th>Buts encaissés</th>
+                <th>Tirs adverses</th>
+            </tr>
+            <tr>
+                <td>Équipe 1</td>
+                <td>Compétition 1</td>
+                <td>5</td>
+                <td>20</td>
+            </tr>
+            <!-- Ajoutez ici les lignes avec les données correspondantes pour le domicile -->
+        </table>
+    </div>
+    <div id="defense_away" style="display: none;">
+        <h2>Statistiques de Défense - Exterieur</h2>
+        <table id="defense_away_table">
+            <tr>
+                <th>Équipe</th>
+                <th>Compétition</th>
+                <th>Buts encaissés</th>
+                <th>Tirs adverses</th>
+            </tr>
+            <tr>
+                <td>Équipe 1</td>
+                <td>Compétition 1</td>
+                <td>3</td>
+                <td>15</td>
+            </tr>
+            <!-- Ajoutez ici les lignes avec les données correspondantes pour l'extérieur -->
+        </table>
+    </div>
+    <div id="defense_other" style="display: none;">
+        <h2>Statistiques de Défense - Autre</h2>
+        <table id="defense_other_table">
+            <tr>
+                <th>Équipe</th>
+                <th>Compétition</th>
+                <th>Buts encaissés</th>
+                <th>Tirs adverses</th>
+            </tr>
+            <tr>
+                <td>Équipe 2</td>
+                <td>Compétition 2</td>
+                <td>8</td>
+                <td>30</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="attaque" class="content">
+    <div class="subtabs">
+        <div class="subtab" onclick="openSubTab('attaque_home')">Domicile</div>
+        <div class="subtab" onclick="openSubTab('attaque_away')">Exterieur</div>
+        <div class="subtab" onclick="openSubTab('attaque_other')">Autre</div>
+    </div>
+    <div id="attaque_home" style="display: none;">
+        <h2>Statistiques d'Attaque - Domicile</h2>
+        <table id="attaque_home_table">
+            <tr>
+                <th>Équipe</th>
+                <th>Compétition</th>
+                <th>Buts marqués</th>
+                <th>Tirs cadrés</th>
+            </tr>
+            <tr>
+                <td>Équipe 1</td>
+                <td>Compétition 1</td>
+                <td>12</td>
+                <td>35</td>
+            </tr>
+        </table>
+    </div>
+    <div id="attaque_away" style="display: none;">
+        <h2>Statistiques d'Attaque - Exterieur</h2>
+        <table id="attaque_away_table">
+            <tr>
+                <th>Équipe</th>
+                <th>Compétition</th>
+                <th>Buts marqués</th>
+                <th>Tirs cadrés</th>
+            </tr>
+            <tr>
+                <td>Équipe 1</td>
+                <td>Compétition 1</td>
+                <td>10</td>
+                <td>30</td>
+            </tr>
+        </table>
+    </div>
+    <div id="attaque_other" style="display: none;">
+        <h2>Statistiques d'Attaque - Autre</h2>
+        <table id="attaque_other_table">
+            <tr>
+                <th>Équipe</th>
+                <th>Compétition</th>
+                <th>Buts marqués</th>
+                <th>Tirs cadrés</th>
+            </tr>
+            <tr>
+                <td>Équipe 2</td>
+                <td>Compétition 2</td>
+                <td>18</td>
+                <td>45</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    function general (){
+
+    } 
+    
+
+    function openTab(tabName) {
+        var i, tabcontent,div;
+        tabcontent = document.getElementsByClassName("content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        div=document.getElementById(tabName).style.display = "block";
+    }
+
+    function openSubTab(subTabName) {
+        var i, subtabcontent,div;
+        subtabcontent = document.querySelectorAll('.subtabs + div[id^="' + subTabName + '"]');
+        for (i = 0; i < subtabcontent.length; i++) {
+            subtabcontent[i].style.display = "none";
+
+        }
+        div=document.getElementById(subTabName).style.display = "block";
+    }
+</script>
+
+</body>
+</html>

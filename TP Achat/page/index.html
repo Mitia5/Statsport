@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=".css">
+    <title>Achat</title>
+</head>
+<script >
+    window.addEventListener("load", function ()  {
+        function insert () {
+            let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.addEventListener("load", function(event) {
+                $msg=(event.target.responseText!="")?event.target.responseText:"Enregistré";
+                alert($msg);
+            });            
+            
+            let formData = new FormData(form);
+            xhr.open("POST", "traitement.php");
+            xhr.send(formData);    
+        }
+        function refresh () {
+            let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("mytable");
+                        var table =   create_table(liste);
+                        div.innerHTML = ""; // Efface le contenu existant avant d'ajouter la nouvelle table
+                        div.appendChild(table); // Ajoute la nouvelle table dans le DOM
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "json.php");
+            xhr.send(null);    
+        }
+        function supprimer(){
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("mytable");
+                        var table =   create_table(liste);
+                        div.innerHTML = ""; // Efface le contenu existant avant d'ajouter la nouvelle table
+                        div.appendChild(table); // Ajoute la nouvelle table dans le DOM
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "supprimer.php");
+
+        }
+        function create_table (liste){
+                let table = document.createElement('table');
+                table.border="1";
+                let row = document.createElement('tr');
+                /* qtt */
+                let cell1 = document.createElement('td');
+                let cell1Text = document.createTextNode("QTT");
+                cell1.appendChild(cell1Text);
+                row.appendChild(cell1);
+                /* produit */
+                let cell2 = document.createElement('td');
+                let cell2Text = document.createTextNode("produit");
+                cell2.appendChild(cell2Text);
+                row.appendChild(cell2);
+                /* date */
+                let cell3 = document.createElement('td');
+                let cell3Text = document.createTextNode("Date");
+                cell3.appendChild(cell3Text);
+                row.appendChild(cell3);
+                table.appendChild(row);
+            
+            for (let i = 0; i  < liste.length; i++) {
+                const achat = liste[i]   ;
+                let row = document.createElement('tr');
+                /* qtt */
+                let cell1 = document.createElement('td');
+                let cell1Text = document.createTextNode(liste[i].qtt);
+                cell1.appendChild(cell1Text);
+                row.appendChild(cell1);
+                /* produit */
+                let cell2 = document.createElement('td');
+                let cell2Text = document.createTextNode(liste[i].produit);
+                cell2.appendChild(cell2Text);
+                row.appendChild(cell2);
+                /* date */
+                let cell3 = document.createElement('td');
+                let cell3Text = document.createTextNode(liste[i].Dates);
+                cell3.appendChild(cell3Text);
+                row.appendChild(cell3);
+                table.appendChild(row);
+            }
+            return table;
+        }
+        var form = document.getElementById("myForm");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // évite de faire le submit par défaut
+            insert();
+        });
+        var button = document.getElementById("mybutton");
+        button.addEventListener("click", function (event) {
+            event.preventDefault(); // évite de faire le submit par défaut
+            refresh();
+        });
+        var button = document.getElementById("delete");
+        button.addEventListener("click", function (event) {
+            event.preventDefault(); // évite de faire le submit par défaut
+            supprimer();
+        });
+    });
+</script>
+<body>
+    <form action="" method="post" id="myForm">  
+        <label for="">Date:  <input type="date" name="date" id=""> </label>
+        <br><br>
+        <label for="">Product:  </label>
+            <select name="produit" id="">
+                <option value="pc">Personnal Computer</option>
+                <option value="mouse"> Mouse</option>
+                <option value="ecouteur">Ecouteurs</option>
+                <option value="ssd">SSD</option>
+            </select>
+        <br><br>
+        <label for="">Quantity: <input type="number" name="qtt" id=""></label>
+        <br><br>
+        <input type="submit" value="Add">
+    </form>
+    <h1>Liste des achats</h1>
+    <div id= "mytable">
+
+    </div>
+   
+    <br><br>
+    <button id="mybutton">Refresh</button>
+    <button id="delete">Delete</button>
+
+</body>
+</html>

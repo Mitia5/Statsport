@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques des Equipes</title>
+</head>
+<script>
+    window.addEventListener("load", function ()  {
+
+    function general_domicile(){
+        let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("statistique");
+                        div.innerHTML="";
+                        var table = table_general(liste);
+                        div.innerHTML = ""; 
+                        div.appendChild(table);
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "g_domicile.php");
+            xhr.send(null);    
+
+    }
+    function defense_domicile(){
+        let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("statistique");
+                        div.innerHTML="";
+                        var table = table_defense(liste);
+                        div.innerHTML = ""; // Efface le contenu existant avant d'ajouter la nouvelle table
+                        div.appendChild(table); // Ajoute la nouvelle table dans le DOM
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "d_domicile.php");
+            xhr.send(null);    
+
+    }
+    function attaque_domicile(){
+        let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("statistique");
+                        div.innerHTML="";
+                        var table = table_attaque(liste);
+                        div.innerHTML = ""; // Efface le contenu existant avant d'ajouter la nouvelle table
+                        div.appendChild(table); // Ajoute la nouvelle table dans le DOM
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "a_domicile.php");
+            xhr.send(null);    
+
+    }
+
+
+    function general_exterieur(){
+        let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("statistique");
+                        div.innerHTML="";
+                        var table = table_general(liste);
+                        div.innerHTML = ""; // Efface le contenu existant avant d'ajouter la nouvelle table
+                        div.appendChild(table); // Ajoute la nouvelle table dans le DOM
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "g_exterieur.php");
+            xhr.send(null);    
+
+    }
+    function defense_exterieur(){
+        let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("statistique");
+                        div.innerHTML="";
+                        var table = table_defense(liste);
+                        div.innerHTML = "";
+                        div.appendChild(table);
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "d_ext.php");
+            xhr.send(null);    
+
+    }
+    function attaque_exterieur(){
+        let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("statistique");
+                        div.innerHTML="";
+                        var table = table_attaque(liste);
+                        div.innerHTML = ""; // Efface le contenu existant avant d'ajouter la nouvelle table
+                        div.appendChild(table); // Ajoute la nouvelle table dans le DOM
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "a_ext.php");
+            xhr.send(null);    
+
+    }
+
+
+    function general_autre(){
+        let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("statistique");
+                        div.innerHTML="";
+                        var table = table_general(liste);
+                        div.innerHTML = ""; 
+                        div.appendChild(table);
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "g_autre.php");
+            xhr.send(null);    
+
+    }
+    function defense_autre(){
+        let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("statistique");
+                        div.innerHTML="";
+                        var table =table_defense(liste);
+                        div.innerHTML = ""; 
+                        div.appendChild(table);
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "d_autre.php");
+            xhr.send(null);    
+
+    }
+    function attaque_autre(){
+        let xhr; 
+            try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+            catch (e) 
+            {
+                try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+                catch (e2) 
+                {
+                    try {  xhr = new XMLHttpRequest();  }
+                    catch (e3) {  xhr = false;   }
+                }
+            }
+            xhr.onreadystatechange  = function()  { 
+                if(xhr.readyState  == 4){
+                    if(xhr.status  == 200) {
+                        var liste = JSON.parse(xhr.responseText);
+
+                        var div = document.getElementById("statistique");
+                        div.innerHTML="";
+                        var table = table_attaque(liste);
+                        div.innerHTML = ""; // Efface le contenu existant avant d'ajouter la nouvelle table
+                        div.appendChild(table); // Ajoute la nouvelle table dans le DOM
+                    } else {
+                        document.dyn="Error code " + xhr.status;
+                    }
+                }
+            };           
+            xhr.open("POST", "a_autre.php");
+            xhr.send(null);    
+
+    }
+
+
+    function table_general(liste) {
+    let table = document.createElement('table');
+    table.border = "1";
+    let row = document.createElement('tr');
+
+    const columnNames = [
+        "id_statistique",
+        "id_equipe",
+        "buts",
+        "tirs_pm",
+        "carton_j",
+        "carton_r",
+        "possession",
+        "passes_reussies",
+        "aeriens_gagnes",
+        "categorie",
+        "note"
+    ];
+
+    columnNames.forEach(columnName => {
+        let cell = document.createElement('td');
+        let cellText = document.createTextNode(columnName);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+    });
+
+    table.appendChild(row);
+
+    for (let i = 0; i < liste.length; i++) {
+        let row = document.createElement('tr');
+
+        columnNames.forEach(columnName => {
+            let cell = document.createElement('td');
+            let cellText = document.createTextNode(liste[i][columnName]);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+        });
+
+        table.appendChild(row);
+    }
+
+    return table;
+}
+    function table_attaque(liste) {
+    let table = document.createElement('table');
+    table.border = "1";
+    let row = document.createElement('tr');
+
+    const columnNames = [
+        "id_statistique",
+        "id_equipe",
+        "tirs_pm",
+        "tirs_ca_pm",
+        "dribbles_pm",
+        "fautes_subies_pm",
+        "categorie",
+        "note"
+    ];
+
+    columnNames.forEach(columnName => {
+        let cell = document.createElement('td');
+        let cellText = document.createTextNode(columnName);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+    });
+
+    table.appendChild(row);
+
+    for (let i = 0; i < liste.length; i++) {
+        let row = document.createElement('tr');
+
+        columnNames.forEach(columnName => {
+            let cell = document.createElement('td');
+            let cellText = document.createTextNode(liste[i][columnName]);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+        });
+
+        table.appendChild(row);
+    }
+
+    return table;
+}
+function table_defense(liste) {
+    let table = document.createElement('table');
+    table.border = "1";
+    let row = document.createElement('tr');
+
+    const columnNames = [
+        "id_statistique",
+        "id_equipe",
+        "tirs_pm",
+        "tacles_pm",
+        "interceptions_pm",
+        "fautes_pm",
+        "hors_jeux_pm",
+        "categorie",
+        "note"
+    ];
+
+    columnNames.forEach(columnName => {
+        let cell = document.createElement('td');
+        let cellText = document.createTextNode(columnName);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+    });
+
+    table.appendChild(row);
+
+    for (let i = 0; i < liste.length; i++) {
+        let row = document.createElement('tr');
+
+        columnNames.forEach(columnName => {
+            let cell = document.createElement('td');
+            let cellText = document.createTextNode(liste[i][columnName]);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+        });
+
+        table.appendChild(row);
+    }
+
+    return table;
+}
+
+    function g() {
+        const otherButtonsDiv = document.getElementById('menu');
+        const table=document.getElementById("statistique");
+        table.innerHTML="";
+
+            const buttonsHTML = `
+                <input type="button" id="domicile" name="domicile" value="Domicile">
+                <input type="button" id="exterieur" name="exterieur" value="Exterieur">
+                <input type="button" id="autre" name="autre" value="Autre">
+            `;
+            otherButtonsDiv.innerHTML = buttonsHTML;
+
+            const domicileButton = document.getElementById('domicile');
+            const exterieurButton = document.getElementById('exterieur');
+            const autreButton = document.getElementById('autre');
+
+            domicileButton.addEventListener('click', function() {
+                general_domicile();
+            });
+            exterieurButton.addEventListener('click', function() {
+                general_exterieur();
+            });
+            autreButton.addEventListener('click', function() {
+                general_autre();
+            });
+                   
+        }
+        function exterieur() {
+        const otherButtonsDiv = document.getElementById('menu');
+        const table=document.getElementById("statistique");
+        table.innerHTML="";
+
+            const buttonsHTML = `
+                <input type="button" id="domicile" name="domicile" value="Domicile">
+                <input type="button" id="exterieur" name="exterieur" value="Exterieur">
+                <input type="button" id="autre" name="autre" value="Autre">
+            `;
+            otherButtonsDiv.innerHTML = buttonsHTML;
+
+            const domicileButton = document.getElementById('domicile');
+            const exterieurButton = document.getElementById('exterieur');
+            const autreButton = document.getElementById('autre');
+
+            domicileButton.addEventListener('click', function() {
+                defense_domicile();
+            });
+            exterieurButton.addEventListener('click', function() {
+                defense_exterieur();
+            });
+            autreButton.addEventListener('click', function() {
+                defense_autre();
+            });
+                   
+        }
+        function attaque() {
+        const otherButtonsDiv = document.getElementById('menu');
+        const table=document.getElementById("statistique");
+        table.innerHTML="";
+            const buttonsHTML = `
+                <input type="button" id="domicile" name="domicile" value="Domicile">
+                <input type="button" id="exterieur" name="exterieur" value="Exterieur">
+                <input type="button" id="autre" name="autre" value="Autre">
+            `;
+            otherButtonsDiv.innerHTML = buttonsHTML;
+
+            const domicileButton = document.getElementById('domicile');
+            const exterieurButton = document.getElementById('exterieur');
+            const autreButton = document.getElementById('autre');
+
+            domicileButton.addEventListener('click', function() {
+                attaque_domicile();
+            });
+            exterieurButton.addEventListener('click', function() {
+                attaque_exterieur();
+            });
+            autreButton.addEventListener('click', function() {
+                attaque_autre();
+            });
+                   
+        }
+        const generalButton = document.getElementById('general');
+        const defenseButton = document.getElementById('defense');
+        const attaqueButton = document.getElementById('attaque');
+
+        generalButton.addEventListener('click',g);
+        defenseButton.addEventListener('click',exterieur);
+        attaqueButton.addEventListener('click',attaque);
+    });
+</script>
+<body>
+    <div id="form">
+    <input type="button" id="general" name="general" value="Général" >
+    <input type="button" id="defense" name="defense" value="Défense" >
+    <input type="button" id="attaque" name="attaque" value="Attaque">
+</div>
+    <br><br>
+<div id="barre">
+    <div id="menu"></div>
+    <div id="statistique"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+/* Réinitialisation des styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Style général de la page */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 20px;
+  }
+  
+  /* Style du formulaire */
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  form input[type="date"],
+  form input[type="number"],
+  form select {
+    width: calc(100% - 22px);
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form input[type="submit"] {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  form input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style de la liste d'achats */
+  h1 {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  #mytable {
+    margin: 20px auto;
+    width: 80%;
+  }
+  
+  #mytable table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #mytable table th,
+  #mytable table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  #mytable table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style du bouton de rafraîchissement */
+  #mybutton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  #delete {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #mybutton:hover {
+    background-color: #0056b3;
+  }
+  

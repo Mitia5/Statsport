@@ -1,0 +1,15 @@
+index.php
+	Affichage
+		(ok)Formulaire(date, zone de liste produit,qtt) -> 10min
+		(ok)tableau contenat la liste des achats
+		(ok)button actualiser
+	Metier
+		Base
+			(ok)table achat(cf Formulaire) -> 5min
+		Fontion
+			(ok)Insertion acaht -> 10min
+			(ok)Connexion -> 2min
+			(ok)getlisteAchat
+	code
+		(ok)Validation Formulaire(-> Insertion Achat)->10min
+		button refresh -> mis a jour du contenu du tableau de la liste des achats
